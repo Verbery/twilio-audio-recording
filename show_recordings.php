@@ -7,15 +7,28 @@
 		<body>
 			<h1>My recordings</h1>
 		<?php
-    // Include the PHP TwilioRest library 
-	include 'Services/Twilio.php';
-    
-    // Twilio REST API version 
-    $ApiVersion = "2010-04-01";
-    
-    // Set our AccountSid and AuthToken 
-	$accountSid = 'ACxxxxxxxxxx';
-	$authToken  = 'xxxxxxxxxxxx';
+
+// Include the PHP TwilioRest library 
+// include 'Services/Twilio.php';
+
+require('vendor/autoload.php');
+
+/*
+ * SETUP environment vars for application in Heroku
+ *
+ * Twilio SID and TOKEN can be found here: https://www.twilio.com/user/account/
+ * heroku config:set TWILIO_SID=Azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+ * heroku config:set TWILIO_TOKEN=Azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+ * heroku config:set TWILIO_APPSID=Azzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+ *
+ */
+
+// Set our AccountSid and AuthToken 
+$accountSid	= getenv('TWILIO_SID');
+$authToken	= getenv('TWILIO_TOKEN');
+
+// Twilio REST API version 
+$ApiVersion = "2010-04-01";
 
 	// @start snippet
     // Instantiate a new Twilio Rest Client 
